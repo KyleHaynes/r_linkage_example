@@ -24,7 +24,7 @@ setnames(d1, tolower)
 setnames(d2, tolower)
 # Check they're identical.
 all(names(d1) == names(d2)) # They are.
-# We can bind the datasets and clean, standardise as one dataset.
+# We can bind the datasets, and clean, standardise and reshape as one dataset.
 d <- rbind(d1, d2, idcol = "data_source")
 # Standardise `gender`.
 d[, gender := toupper(gsub("^([A-z]).*", "\\1", gender))]
