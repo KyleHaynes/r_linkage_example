@@ -1,6 +1,6 @@
 id	Given_Names	LAST_NAME	Address	DoB	Gender	Alias_given_names	Alias_last_NameS
 1	John Rodney	Smith	123 Main St, 4000	1991-11-21	Male	Johnny	Smith
-2	Jane Alex	Rose	456 Elm St 4059	1991-02-15	F	Janie	D
+2	JANE Alex	Rose	456 Elm St 4059	1991-02-15	F	Janie	D
 3	David	Johnson	789B Oak St 4000	1991-06-30	MALE	Dave	John
-4	Emily Zoe	Brown	1 Smith street 4003	1991-03-20	f	Emily Zoe	Brown-Haines
+4	Emily Zoe	BROWN	1 SMITH STREET 4003	1991-03-20	f	Emily Zoe	Brown-Haines
 5	Kyle R	Hopkins	1 Marine Rd, 4000	1992-01-01	MALE		
