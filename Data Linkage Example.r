@@ -1,7 +1,12 @@
 # Data Linkage Example !!!!!!!!!!!!!!!!!!!!!!!!! 115 Rows, minimalst margins, probably just shy of 100 columns (99)
+# Code & data available: https://github.com/KyleHaynes/r_linkage_example
 # About:
     # The following code is an example of the full data linkage process within a limited amount of
     # allowable space (two pages).
+
+    # Like all linkages context and scope are required
+    # Context is: a small number of records from another area are unable to be linked across two
+    # internal datasets, tollerence is high
 
     # Need to talk about the purpose of the linkages --- what am i linking?
 
@@ -15,35 +20,15 @@
     # Export linkage keys
 
 # ---- Load required packages ----
-require(data.table) # For concise syntax and memory efficient code.
-require(stringdist) # For phonetic algorithms (soundex, jaccard, jaro-winkler).
+# install.packages(c("data.table", "stringdist"))
+require(data.table) # For concise syntax & memory efficient code.
+require(stringdist) # For phonetic algorithms.
 
 # # ---- Import datasets ----
-# d1 <- fread("")
-# d2 <- fread("")
-# # Inspect the structures
-# str(d1); str(d2)
-
-d1 <- data.table(
-    Given_Names = c("John Apple", "Jane Alex", "David", "Emily"),
-    LAST_NAME = c("Smith", "Doe", "Johnson", "Brown"),
-    Address = c("123 Main St, 4000", "456 Elm St 4059", "789 Oak St 4001", "321 Pine St 4002"),
-    DoB = c("1991-11-21", "1995-02-15", "1985-06-30", "1998-11-20"),
-    Gender = c("Male", "F", "MALE", "f"),
-    Alias_given_names = c("Johnny", "Janie", "Dave", "Em"),
-    Alias_last_NameS = c("Smi", "D", "John", "B")
-)
-
-d2 <- data.table(
-    given_names = c("Johnny Apple", "Jane A", "David", "Emily"),
-    last_name = c("Smyth", "Alex-Smith", "Johnson", "Brown"),
-    address = c("123 Mains St, 4000", "456 Elm St 4059", "789 Oak St 4001", "321 Pine St 4002"),
-    DoB = c("1990-11-12", "1995-02-15", "1985-06-30", "1998-11-20"),
-    Gender = c("Male", "F", "MALE", "f"),
-    Alias_given_names = c("John", "Janie", "Dave", "Em"),
-    Alias_last_NameS = c("Smi", "D", "John", "B")
-)
-
+d1 <- fread("https://raw.githubusercontent.com/KyleHaynes/r_linkage_example/main/data_1.tsv")
+d2 <- fread("https://raw.githubusercontent.com/KyleHaynes/r_linkage_example/main/data_2.tsv")
+# Inspect the structures
+str(d1); str(d2)
 
 # ---- Clean, Standardise and Wrangle datasets ----
 # Create an unique ID on each dataset.
