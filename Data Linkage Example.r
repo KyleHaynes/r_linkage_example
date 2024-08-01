@@ -43,6 +43,7 @@ d <- melt(d,
 d[, block_1 := paste(year(dob), phonetic(given_names, method = "soundex"), sep = "~")]
 d[, block_2 := paste(year(dob), phonetic(last_name, method = "soundex"), sep = "~")]
 d[, block_3 := paste(postcode, dob, sep = "~")]
+d[, block_4 := paste(postcode, phonetic(last_name, method = "soundex"), sep = "~")]
 # Melt again by the blocking variables. This ensures we only need to merge once rather than 3 times.
 d <- melt(d,
     id.vars = c("id", "data_source", "given_names", "last_name", "dob", "gender", "address", "postcode"),
