@@ -3,4 +3,4 @@ id	Given_Names	LAST_NAME	Address	DoB	Gender	Alias_given_names	Alias_last_NameS
 22	Jane	Alex-Rose	456 Elm St 4060	1991-02-15	FEMALE	Jane A	Rose
 34	David Wallace	Johnson	789 Oak St 4001	1991-06-30	MALE	David W	JohSten
 45	Johnny R	Smyth	123 Mains St, 4000	1990-11-12	MALE		
-65	Kylie J	Hopkins	1 Marine Rd, 4000	1/01/1992	FEMALE		
+65	Kylie J	Hopkins	1 Marine Rd, 4000	1992-01-01	FEMALE		
