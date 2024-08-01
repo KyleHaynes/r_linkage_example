@@ -31,35 +31,39 @@ d2 <- fread("https://raw.githubusercontent.com/KyleHaynes/r_linkage_example/main
 str(d1); str(d2)
 
 # ---- Clean, Standardise and Wrangle datasets ----
-# Create an unique ID on each dataset.
-d1[, id := .I]
-d2[, id := .I]
+# IDs should always be unique.
+anyDuplicated(c(d1$id, d2$id)) # All unique.
 
-# Variables names.
+# Standardise variables names.
 setnames(d1, tolower)
 setnames(d2, tolower)
+# Check they're identical.
+all(names(d1) == names(d2)) # They are.
+
+# We can bind the datasets and clean, standardise as one dataset.
+d <- rbind(d1, d2, idcol = "data_source")
+
 # Standardise `gender`.
-d1[, gender := toupper(gsub("^([A-z]).*", "\\1", gender))]
-d2[, gender := toupper(gsub("^([A-z]).*", "\\1", gender))]
-# Loop over each variable to normalise
-for (i in names(d1)) {
-    # Convert all character variables to a consistent case and remove redundant white space.
-    d1[, (i) := trimws(toupper(get(..i)))] 
-    d2[, (i) := trimws(toupper(get(..i)))]
+d[, gender := toupper(gsub("^([A-z]).*", "\\1", gender))]
+
+# Loop over each variable to normalise (consistent case, remove redundant white space).
+for (i in names(d)) {
+    d[, (i) := trimws(toupper(get(..i)))]
 }
+
 # Derive a postcode from the `address` variable.
-d1[, postcode := gsub(".*(\\d{4}).*", "\\1", address)]
-d2[, postcode := gsub(".*(\\d{4}).*", "\\1", address)]
+d[, postcode := gsub(".*(\\d{4}).*", "\\1", address)]
 
-# ---- Create blocks and Link datasets ----
-t <- rbind(d1, d2, idcol = "dataset")
-
-t <- melt(t,
-    id.vars = c("id", "dataset", "dob", "gender", "address", "postcode"),
+# We have alias names for some. We can melt and link alias names with names (and vice versa). 
+d <- melt(d,
+    id.vars = c("id", "data_source", "dob", "gender", "address", "postcode"),
     measure.vars = patterns("given_names" = "given_name", "last_name" = "last_name"),
     variable.factor = F
 )
 t[, id := paste0(id, "_", variable)]
+
+
+# ---- Create Blocks and Link datasets ----
 
 t[, block_1 := paste(year(dob), phonetic(given_names, method = "soundex"), sep = "~")]
 t[, block_2 := paste(year(dob), phonetic(last_name, method = "soundex"), sep = "~")]
