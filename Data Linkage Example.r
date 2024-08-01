@@ -86,8 +86,13 @@ bp[(matched_pairs), .(id_d1, id_d2)]
 
     # Like all linkages context and scope are required
     # Context is: a small number of records from another area are unable to be linked across two
-    # internal datasets, tollerence is high
+    # internal datasets, tolerance is high (Data custodian indicates it should be a 1-to-1 match)
     # Need to talk about the purpose of the linkages --- what am i linking?
+
+# Scenario and context for the work
+    # A data custodian has reached out with the remainder of records they could not
+    # deterministically link, with a preconceived notion that dataset 1 and dataset 2 should be
+    # able to be linked completely
 
 # How the code could be improved
 - Version control. This is something that I do in all projects, however, not feasible 
